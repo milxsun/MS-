@@ -39,7 +39,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* 잠금화면 */
 .lock{display:flex;flex-direction:column;align-items:center;padding-top:calc(env(safe-area-inset-top,0px) + 68px);cursor:pointer;touch-action:none}
 .lock .date{font-size:21px;font-weight:600;opacity:.92;letter-spacing:-.3px}
-.lock .time{position:relative;display:inline-block;font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;font-size:118px;font-weight:700;line-height:1;letter-spacing:-4px;margin-top:2px;font-variant-numeric:tabular-nums;
+.lock .time{position:relative;display:inline-block;font-family:ui-rounded,"SF Pro Rounded","Nunito",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;font-size:118px;font-weight:800;line-height:1;letter-spacing:-2px;margin-top:2px;font-variant-numeric:tabular-nums;
  background:linear-gradient(175deg,#ffffff94 0%,#dff1ff52 45%,#ffe2f038 75%,#ffffff6e 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1.6px #ffffffb8;
  filter:drop-shadow(0 1px 0 #ffffff66) drop-shadow(0 10px 22px #1a1f6045)}
 .lock .time::after{content:attr(data-t);position:absolute;left:0;top:0;white-space:nowrap;-webkit-text-stroke:0;color:transparent;background:linear-gradient(110deg,transparent 36%,#ffffffd9 50%,transparent 64%);background-size:260% 100%;background-position:130% 0;-webkit-background-clip:text;background-clip:text;animation:sheen 7s ease-in-out infinite}
@@ -74,35 +74,100 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 /* 홈 화면 */
 .homes{padding:calc(env(safe-area-inset-top,0px) + 76px) 22px 0;transform:scale(1.1);opacity:0;pointer-events:none;filter:blur(10px)}
 #phone.home .homes{transform:none;opacity:1;pointer-events:auto;filter:none}
-.wid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:26px}
-.w{height:158px;border-radius:30px;padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between}
-.w small{font-size:13px;font-weight:600;opacity:.85}
-.w .big{font-size:46px;font-weight:300;line-height:1}
-.w .d{font-size:56px;font-weight:300;line-height:1}
-.w .s{font-size:13px;font-weight:500;opacity:.9}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 6px}
 .app{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11.5px;font-weight:500;text-shadow:0 1px 4px #0005}
 #phone.home .app{animation:pop .55s cubic-bezier(.34,1.4,.64,1) both;animation-delay:calc(var(--i)*22ms)}
 @keyframes pop{from{opacity:0;transform:scale(.6)}}
-.ic{position:relative;width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;overflow:hidden;box-shadow:inset 0 1.5px 1px #ffffffa0,inset 0 -2px 3px #00000026,0 6px 14px #00000033;transition:transform .15s,filter .15s}
-.ic::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,#ffffff59,transparent 48%)}
+.ic{position:relative;width:64px;height:64px;border-radius:22.5%;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 10px #0000003d;transition:transform .15s,filter .15s}
+.ic svg{width:100%;height:100%;display:block}
 .app:active .ic{transform:scale(.9);filter:brightness(.82)}
 .search{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 132px);left:50%;transform:translateX(-50%);padding:9px 26px;border-radius:22px;font-size:14px;font-weight:500;display:flex;gap:7px;align-items:center}
 .dock{position:absolute;bottom:calc(env(safe-area-inset-bottom,0px) + 26px);left:14px;right:14px;height:96px;border-radius:38px;display:flex;justify-content:space-around;align-items:center;padding:0 8px}
 .dock .app span:last-child{display:none}
-.toast{position:absolute;z-index:40;top:calc(env(safe-area-inset-top,0px) + 56px);left:14px;right:14px;padding:13px 16px;border-radius:26px;font-size:14px;font-weight:500;transform:translateY(-150%);transition:transform .45s cubic-bezier(.32,.72,0,1);background:#ffffff38}
-.toast.show{transform:none}
+.toast{position:absolute;z-index:40;top:calc(env(safe-area-inset-top,0px) + 56px);left:14px;right:14px;padding:13px 16px;border-radius:26px;font-size:14px;font-weight:500;transform:translateY(calc(-100% - 100px));opacity:0;transition:transform .45s cubic-bezier(.32,.72,0,1),opacity .3s;background:#ffffff38}
+.toast.show{transform:none;opacity:1}
+.status{transition:color .3s}
+#phone.light .status{color:#111}
+.appv{z-index:20;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.86);pointer-events:none;border-radius:44px}
+.appv.dk{background:#000;color:#fff}
+#phone.app .appv{opacity:1;transform:none;pointer-events:auto;border-radius:0}
+#phone.app .homes{transform:scale(.94);opacity:.5;filter:blur(8px)}
+.appc{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;padding:0 30px}
+.appc h3{margin:6px 0 0;font-size:22px}
+.appc p{margin:0;opacity:.6;font-size:15px}
+.appv .bar{background:currentColor;opacity:.85}
+.kk{position:absolute;inset:0;display:none;flex-direction:column;background:#fff;color:#191919;text-align:left}
+.kk.on{display:flex}
+.kk button{text-align:left}
+.kh{display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 60px) 18px 6px;flex:none}
+.kh h1{margin:0;font-size:24px;font-weight:700;letter-spacing:-.5px}
+.kic{display:flex;gap:18px}.kic svg{width:26px;height:26px;display:block}
+.kchips{display:flex;gap:8px;padding:8px 18px 12px;flex:none;overflow:hidden}
+.kchip{height:34px;border:1px solid #e6e6e6;border-radius:17px;padding:0 14px;display:flex;align-items:center;gap:6px;font-size:14px;white-space:nowrap;color:#222}
+.kchip svg{width:18px;height:18px}
+.kchip.on{background:#191919;color:#fff;border-color:#191919;font-weight:600}
+.kchip i{background:#ff5a2b;color:#fff;border-radius:10px;font-style:normal;font-size:11px;font-weight:700;padding:1px 6px}
+.kscroll{flex:1;overflow-y:auto;min-height:0;padding-bottom:12px;scrollbar-width:none}
+.kscroll::-webkit-scrollbar,.kmsgs::-webkit-scrollbar{display:none}
+.kban{margin:2px 18px 8px;background:#f5f5f5;border-radius:12px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.kban small{font-size:11px;color:#777}.kban b{display:block;font-size:15px;margin:3px 0 2px}.kban span{font-size:12px;color:#666}.kban em{font-style:normal;font-size:34px}
+.kr{display:flex;align-items:center;gap:14px;padding:10px 18px;width:100%}
+.kav{flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.kav svg,.kav img{width:100%;height:100%;object-fit:cover;display:block}
+.kav.sp{width:40px;height:40px}
+.kmid{flex:1;min-width:0}
+.kn{font-size:16px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kp{font-size:14px;color:#8a8a8a;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kside{display:flex;flex-direction:column;align-items:flex-end;gap:6px;align-self:flex-start;padding-top:2px}
+.kt{font-size:12px;color:#9a9a9a}
+.kbd{min-width:22px;height:22px;border-radius:11px;background:#ff5a2b;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 6px}
+.ksec{font-size:13px;color:#8a8a8a;padding:14px 18px 4px}
+.kdiv{height:1px;background:#f0f0f0;margin:6px 18px}
+.kst{font-size:13px;color:#8a8a8a;max-width:42%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ktab{display:flex;flex:none;border-top:1px solid #eee;background:#fff;padding:8px 0 calc(env(safe-area-inset-bottom,0px) + 26px)}
+.ktab button{flex:1;display:flex;justify-content:center;color:#b8b8b8;position:relative;padding:6px 0}
+.ktab button.on{color:#1a1a1a}
+.ktab svg{width:28px;height:28px;fill:currentColor}
+.ktab .kbd{position:absolute;top:-2px;left:calc(50% + 4px);height:18px;min-width:18px;font-size:11px;padding:0 5px}
+.ktab .kdot{position:absolute;top:4px;left:calc(50% + 12px);width:7px;height:7px;border-radius:50%;background:#ff5a2b}
+.kroom{background:#b2c7da}
+.krh{display:flex;align-items:center;gap:6px;padding:calc(env(safe-area-inset-top,0px) + 56px) 14px 10px 8px;flex:none}
+.krh h2{flex:1;margin:0;font-size:17px;font-weight:700}
+.krh button{width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.krh svg{width:24px;height:24px}
+.kmsgs{flex:1;overflow-y:auto;min-height:0;padding:4px 14px 10px;scrollbar-width:none}
+.ksep{width:fit-content;margin:14px auto 10px;background:#0000002e;color:#fff;font-size:12px;border-radius:12px;padding:4px 12px}
+.kmr{display:flex;gap:8px;margin-top:4px;align-items:flex-start}
+.kmr.f{margin-top:14px}
+.kmr.me{justify-content:flex-end}
+.kcol{min-width:0;max-width:calc(100% - 50px)}
+.kname{font-size:13px;color:#333;margin:0 0 5px 2px}
+.kline{display:flex;gap:5px;align-items:flex-end}
+.kbb{background:#fff;border-radius:14px;padding:9px 12px;font-size:14.5px;line-height:1.45;max-width:230px;white-space:pre-wrap;overflow-wrap:anywhere;color:#191919}
+.kmr.me .kbb{background:#fee500}
+.kmt{font-size:11px;color:#4b5a68;white-space:nowrap;text-align:right;line-height:1.25}
+.kmt b{color:#e8b800;font-weight:700;display:block}
+.kinp{display:flex;align-items:center;gap:10px;background:#fff;padding:10px 12px calc(env(safe-area-inset-bottom,0px) + 28px);flex:none}
+.kinp .pl{width:30px;height:30px;border-radius:50%;border:1.5px solid #bdbdbd;color:#bdbdbd;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1}
+.kinp .fd{flex:1;min-width:0;height:38px;border:0;outline:0;border-radius:19px;background:#f2f2f2;padding:0 14px;font:inherit;font-size:16px;color:#191919}
+.kinp .sd{width:34px;height:34px;border-radius:50%;background:#f0f0f0;color:#bdbdbd;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.kinp .sd.on{background:#fee500;color:#3a1d1d}
+.kinp .sd svg{width:18px;height:18px}
+.appv .bar{z-index:5}
 @media(prefers-reduced-motion:reduce){.screen,.toast,.dim{transition:none}.hint,.dots.shake,#phone.home .app{animation:none}}
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
 </head>
 <body>
 <main id="phone">
   <div class="wp" id="wp"></div><div class="dim"></div>
   <div class="status"><span id="stime">9:41</span>
     <span class="r">
-      <svg width="19" height="12" viewBox="0 0 18 12" fill="#fff"><rect y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" width="3" height="12" rx="1"/></svg>
-      <svg width="17" height="12" viewBox="0 0 24 18" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M3 7a13 13 0 0 1 18 0M6.5 11a8 8 0 0 1 11 0"/><circle cx="12" cy="15.5" r="1.6" fill="#fff" stroke="none"/></svg>
-      <svg width="28" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="4" fill="none" stroke="#fff" opacity=".45"/><rect x="2" y="2" width="17" height="9" rx="2.6" fill="#fff"/><rect x="24" y="4.5" width="2" height="4" rx="1" fill="#fff" opacity=".45"/></svg>
+      <svg width="19" height="12" viewBox="0 0 18 12" fill="currentColor"><rect y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" width="3" height="12" rx="1"/></svg>
+      <svg width="17" height="12" viewBox="0 0 24 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M3 7a13 13 0 0 1 18 0M6.5 11a8 8 0 0 1 11 0"/><circle cx="12" cy="15.5" r="1.6" fill="currentColor" stroke="none"/></svg>
+      <svg width="28" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="22" height="12" rx="4" fill="none" stroke="currentColor" opacity=".45"/><rect x="2" y="2" width="17" height="9" rx="2.6" fill="currentColor"/><rect x="24" y="4.5" width="2" height="4" rx="1" fill="currentColor" opacity=".45"/></svg>
     </span></div>
   <i class="island"></i>
 
@@ -114,7 +179,7 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
       <span class="glass" aria-label="손전등"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path fill-rule="evenodd" d="M7 2.5A.5.5 0 0 1 7.5 2h9a.5.5 0 0 1 .5.5v3.7c0 .5-.2 1-.6 1.4L15 9v11.2a1.8 1.8 0 0 1-1.8 1.8h-2.4A1.8 1.8 0 0 1 9 20.2V9L7.6 7.6A2 2 0 0 1 7 6.2zM10.8 12.7a1.2 1.2 0 0 1 2.4 0v1.6a1.2 1.2 0 0 1-2.4 0z"/></svg></span>
       <span class="glass" aria-label="카메라"><svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path fill-rule="evenodd" d="M9.2 4h5.6l1.2 2h2.7A2.3 2.3 0 0 1 21 8.3v9.4a2.3 2.3 0 0 1-2.3 2.3H5.3A2.3 2.3 0 0 1 3 17.7V8.3A2.3 2.3 0 0 1 5.3 6H8zM12 8.7a4.1 4.1 0 1 0 0 8.2 4.1 4.1 0 0 0 0-8.2z"/><circle cx="12" cy="12.8" r="2.2"/></svg></span>
     </div>
-    <div class="bar"></div>
+    
   </section>
 
   <section class="screen pw" id="pw" aria-label="암호 입력">
@@ -126,15 +191,12 @@ button:focus-visible{outline:2px solid #fff;outline-offset:3px}
   </section>
 
   <section class="screen homes" id="homes" aria-label="홈 화면">
-    <div class="wid">
-      <div class="w glass"><small id="wloc"></small><div><div class="big" id="wt"></div><div class="s" id="ws"></div></div></div>
-      <div class="w glass"><small id="wday"></small><div><div class="d" id="wd"></div><div class="s">오늘 일정 없음</div></div></div>
-    </div>
     <div class="grid" id="grid"></div>
     <div class="search glass"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>검색</div>
     <nav class="dock glass" id="dock"></nav>
-    <button class="bar" id="relock" aria-label="잠금화면으로 돌아가기"></button>
+    
   </section>
+  <section class="screen appv" id="appv" aria-label="앱 화면"><div class="appc" id="appc"></div><div class="kk" id="kk"></div><button class="bar" id="closeapp" aria-label="홈으로 돌아가기"></button></section>
   <div class="toast glass" id="toast" role="status"></div>
 </main>
 
@@ -144,12 +206,53 @@ const CFG={
   pin:'0913',            // 비밀번호 (4자리)
   now:null,              // 폰 속 시각 고정 예) '2026-09-13T19:00:00+09:00' / null 이면 실제 시각
   wallpaper:'wallpaper.png',        // 배경 사진 경로 예) 'wallpaper.jpg' (없으면 그라데이션)
-  weather:{loc:'서울',t:'31°',s:'맑음'},
-  apps:[                 // [이름, 이모지, 배경색]
-    ['메시지','💬','linear-gradient(#5be26a,#1fb83b)'],['카카오톡','🗨️','#fee500'],['Instagram','📷','linear-gradient(45deg,#f9a03f,#e1306c 55%,#833ab4)'],['사진','🌸','#fff'],
-    ['캘린더','📅','#fff'],['메모','📝','linear-gradient(#ffe36a,#ffc933)'],['음악','🎵','linear-gradient(#ff5f7a,#e0264b)'],['지도','🗺️','linear-gradient(#7be08a,#4aa8ff)'],
-    ['시계','⏰','#16171b'],['지갑','💳','linear-gradient(#2b2d33,#0f1013)'],['설정','⚙️','linear-gradient(#c5c8d0,#868a95)'],['App Store','🅰️','linear-gradient(#4ab2ff,#1a6df0)']],
-  dock:[['전화','📞','linear-gradient(#5be26a,#1fb83b)'],['Safari','🧭','linear-gradient(#5db7ff,#2a7de1)'],['메시지','💬','linear-gradient(#5be26a,#1fb83b)'],['음악','🎵','linear-gradient(#ff5f7a,#e0264b)']]
+  apps:[                 // 위쪽 줄 · [이름, 아이콘 종류, 배경색]
+    ['카메라','camera','linear-gradient(#d6d7dc,#8e8f96)'],
+    ['사진','photos','#fff'],
+    ['메모','notes','#fff'],
+    ['Instagram','insta','radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285aeb 90%)']],
+  dock:[                 // 아래 독
+    ['전화','phone','linear-gradient(#5ef07a,#10c63f)'],
+    ['Safari','safari','#fff'],
+    ['문자','msg','linear-gradient(#5ef07a,#10c63f)'],
+    ['카카오톡','kakao','#fee500']]
+  ,kakao:{               // ── 카카오톡 내용 (여기만 고치면 됩니다) ──
+    me:{n:'나',st:'오늘도 화이팅',c:'#9ec5d8'},      // 사진은 e:'파일이름.jpg'
+    friends:[              // st=상태메시지, c=기본 프로필 배경색, e=프로필 사진
+      {n:'서연',st:'커피 마시는 중 ☕',c:'#9ec5d8'},{n:'지호',st:'',c:'#d9b99b'},{n:'민재',st:'바쁘다 바빠',c:'#a8cfa0'},
+      {n:'하은',st:'',c:'#d8a0b5'},{n:'도윤',st:'🎧',c:'#b8a8d8'},{n:'매니저님',st:'문의는 카톡으로',c:'#8fb6cc'}],
+    // ★ 답장 설정: 대화방마다 reply 를 적으면 내가 보낸 말에 상대가 답장해요
+    //   rules = [{k:'단어1|단어2', say:['답장1','답장2']}]  → 내가 보낸 말에 k 단어가 들어 있으면 say 를 한 줄씩 보냄 (위에서부터 먼저 맞는 것만)
+    //   else  = 어느 규칙에도 안 맞을 때 차례대로 하나씩 보내는 답장
+    chats:[                // p=미리보기, t=시간, u=안 읽은 수, msgs=[['them'|'me', 내용, 시각, 안읽음(1)], ['sep','날짜']]
+      {n:'서연',p:'내일 몇 시에 볼까?',t:'오전 9:12',u:2,c:'#9ec5d8',reply:{rules:[
+        {k:'안녕|하이|ㅎㅇ',say:['안녕~','뭐해?']},
+        {k:'사랑|좋아',say:['ㅋㅋㅋ 갑자기?','나도~']},
+        {k:'밥|먹',say:['뭐 먹을래?','나 파스타 땡겨']},
+        {k:'내일|약속|몇 시',say:['내일 2시 어때?','카페에서 보자 ☕']}],
+        else:['ㅋㅋㅋ','응응','그래서?']},msgs:[
+        ['sep','2026년 10월 18일 일요일'],['them','일어났어?','오전 9:05'],['me','방금 ㅋㅋ','오전 9:08'],
+        ['them','내일 약속 안 잊었지?','오전 9:10'],['them','내일 몇 시에 볼까?','오전 9:12']]},
+      {n:'매니저님',p:'스케줄표 보내드렸어요 확인 부탁드려요!',t:'오전 8:40',u:1,c:'#8fb6cc',reply:{rules:[
+        {k:'일정|스케줄',say:['네 확인했습니다!','수정할 부분 있으면 말씀해 주세요 :)']},
+        {k:'감사|고마워',say:['아니에요 😊']}],
+        else:['넵 확인했습니다!','네네~']},msgs:[
+        ['sep','2026년 10월 18일 일요일'],['them','안녕하세요! 다음주 일정 공유드려요','오전 8:38'],
+        ['them','스케줄표 보내드렸어요 확인 부탁드려요!','오전 8:40']]},
+      {n:'지호',p:'ㅋㅋㅋㅋ 알겠어 이따 봐',t:'어제',u:0,c:'#d9b99b',reply:{rules:[
+        {k:'치킨|밥|먹',say:['ㅇㅋ','7시에 거기서 보자']},
+        {k:'ㅋㅋ',say:['ㅋㅋㅋㅋㅋ']}],
+        else:['ㅇㅇ','ㅋㅋ','알겠어']},msgs:[
+        ['sep','2026년 10월 17일 토요일'],['me','저녁에 뭐 먹을래?','오후 5:20'],['them','치킨?','오후 5:22'],
+        ['me','ㅇㅋ 7시에 보자','오후 5:23'],['them','ㅋㅋㅋㅋ 알겠어 이따 봐','오후 5:24',0]]},
+      {n:'하은',p:'사진 보내줘서 고마워!',t:'어제',u:0,c:'#d8a0b5',reply:{rules:[
+        {k:'사진',say:['사진 진짜 잘 나왔다!','고마워 ㅎㅎ']}],
+        else:['ㅎㅎ','맞아 맞아','그치?']},msgs:[
+        ['sep','2026년 10월 17일 토요일'],['them','어제 찍은 사진 있어?','오후 1:02'],['me','응 보내줄게','오후 1:05'],
+        ['them','사진 보내줘서 고마워!','오후 1:20']]},
+      {n:'민재',p:'ㅇㅋㅇㅋ',t:'10월 3일',u:0,c:'#a8cfa0',reply:{else:['ㅇㅋ','ㅇㅇ']},msgs:[
+        ['sep','2026년 10월 3일 토요일'],['them','내일 풋살 가능?','오후 8:11'],['me','가능 ㅇㅇ','오후 8:15'],['them','ㅇㅋㅇㅋ','오후 8:16']]}]
+  }
 };
 
 const $=s=>document.querySelector(s),phone=$('#phone');
@@ -161,15 +264,24 @@ function tick(){const d=now();
   const p=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{...TZ,hour:'numeric',minute:'2-digit',hourCycle:'h23'}).formatToParts(d).map(x=>[x.type,x.value]));
   const t=`${+p.hour}:${p.minute}`;$('#time').textContent=$('#time').dataset.t=t;$('#stime').textContent=t;
   $('#date').textContent=d.toLocaleDateString('ko-KR',{...TZ,month:'long',day:'numeric',weekday:'long'});
-  $('#wday').textContent=d.toLocaleDateString('ko-KR',{...TZ,weekday:'long'});
-  $('#wd').textContent=d.toLocaleDateString('ko-KR',{...TZ,day:'numeric'}).replace('일','')}
+}
 tick();setInterval(tick,5000);
-$('#wloc').textContent=CFG.weather.loc;$('#wt').textContent=CFG.weather.t;$('#ws').textContent=CFG.weather.s;
 if(CFG.wallpaper)$('#wp').style.cssText=`background-image:url("${CFG.wallpaper}");background-size:cover;background-position:center;background-color:#1b1b1d`;
 
 const LET={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};
 $('#pad').innerHTML=[1,2,3,4,5,6,7,8,9,'',0,''].map(n=>n===''?'<span></span>':`<button class="k glass" data-n="${n}" aria-label="${n}"><b>${n}</b><small>${LET[n]||''}</small></button>`).join('');
-let ix=0;const icon=([n,e,bg])=>`<button class="app" style="--i:${ix++}" data-app="${n}"><span class="ic" style="background:${bg}">${e}</span><span>${n}</span></button>`;
+const PETAL=[['#ffd60a',0],['#ff9f0a',45],['#ff453a',90],['#ff375f',135],['#bf5af2',180],['#5e5ce6',225],['#32ade6',270],['#30d158',315]].map(([c,r])=>`<ellipse cx="30" cy="19" rx="7.5" ry="11" fill="${c}" style="mix-blend-mode:multiply" transform="rotate(${r} 30 30)"/>`).join('');
+const ICONS={
+ camera:'<svg viewBox="0 0 60 60"><path d="M17 20h4.5l2-3.5h13l2 3.5H43a4 4 0 0 1 4 4v15a4 4 0 0 1-4 4H17a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4z" fill="#1c1c1e"/><circle cx="30" cy="31.5" r="7" fill="none" stroke="#d9dadf" stroke-width="2.6"/><circle cx="42" cy="25" r="1.7" fill="#ffd60a"/></svg>',
+ photos:`<svg viewBox="0 0 60 60"><g opacity=".92">${PETAL}</g></svg>`,
+ notes:'<svg viewBox="0 0 60 60"><rect width="60" height="14" fill="#ffd426"/><path d="M7 27h46M7 37h46M7 47h46" stroke="#e3e3e8" stroke-width="1.6"/></svg>',
+ insta:'<svg viewBox="0 0 60 60" fill="none" stroke="#fff" stroke-width="3.2"><rect x="14" y="14" width="32" height="32" rx="9.5"/><circle cx="30" cy="30" r="7.6"/><circle cx="39.3" cy="20.7" r="1.4" fill="#fff" stroke="none"/></svg>',
+ phone:'<svg viewBox="-4 -4 32 32"><path fill="#fff" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>',
+ safari:'<svg viewBox="0 0 60 60"><defs><radialGradient id="sg" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#6cc3ff"/><stop offset="1" stop-color="#0a64e8"/></radialGradient></defs><circle cx="30" cy="30" r="24" fill="url(#sg)"/><circle cx="30" cy="30" r="21.5" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="2.4" stroke-dasharray="1.2 4.4"/><g transform="rotate(45 30 30)"><path d="M30 12 34.5 30h-9z" fill="#ff3b30"/><path d="M30 48 34.5 30h-9z" fill="#f2f2f7"/></g></svg>',
+ msg:'<svg viewBox="0 0 60 60"><path fill="#fff" d="M30 14c-9.4 0-17 6.2-17 13.8 0 4.4 2.5 8.3 6.5 10.8-.4 2.3-1.6 4.4-3.3 6 3.2-.3 6.2-1.6 8.4-3.5 1.7.4 3.5.5 5.4.5 9.4 0 17-6.2 17-13.8S39.4 14 30 14z"/></svg>',
+ kakao:'<svg viewBox="0 0 60 60"><ellipse cx="30" cy="28" rx="17" ry="14" fill="#3a1d1d"/><path d="M20 38l-3 8 10-5z" fill="#3a1d1d"/><text x="30" y="31.5" text-anchor="middle" font-size="9" font-weight="900" fill="#fee500" font-family="Arial,sans-serif">TALK</text></svg>'
+};
+let ix=0;const icon=([n,e,bg])=>`<button class="app" style="--i:${ix++}" data-app="${n}"><span class="ic" style="background:${bg}">${ICONS[e]||e}</span><span>${n}</span></button>`;
 $('#grid').innerHTML=CFG.apps.map(icon).join('');$('#dock').innerHTML=CFG.dock.map(icon).join('');
 
 const buzz=n=>navigator.vibrate&&navigator.vibrate(n);
@@ -189,10 +301,84 @@ $('#emg').addEventListener('click',()=>toast('긴급 전화는 지원하지 않�
 $('#lock').addEventListener('click',openPass);
 $('#lock').addEventListener('pointerdown',e=>{sy=e.clientY});
 $('#lock').addEventListener('pointerup',e=>{if(sy!=null&&sy-e.clientY>50)openPass();sy=null});
-$('#relock').addEventListener('click',()=>{phone.classList.remove('home','pass');busy=false;setPin('')});
-$('#homes').addEventListener('click',e=>{const a=e.target.closest('[data-app]');if(a)toast(`‘${a.dataset.app}’은(는) 아직 준비 중이에요`)});
+const APPMAP=Object.fromEntries([...CFG.apps,...CFG.dock].map(a=>[a[0],a]));
+const DARKAPPS=['카메라'];     // 화면이 까만 앱 (상태바 글자가 흰색으로)
+function openApp(n){const [,k,bg]=APPMAP[n];
+  $('#appc').innerHTML=`<span class="ic" style="background:${bg}">${ICONS[k]||k}</span><h3>${n}</h3><p>아직 만들어지지 않은 화면이에요</p>`;
+  const dk=DARKAPPS.includes(n);$('#appv').classList.toggle('dk',dk);
+  phone.classList.toggle('light',!dk);phone.classList.add('app');
+  const isK=n==='카카오톡';$('#kk').classList.toggle('on',isK);$('#appc').style.display=isK?'none':'';if(isK){kRoom=null;kRender()}}
+function closeApp(){phone.classList.remove('app','light');kRoom=null}
+$('#homes').addEventListener('click',e=>{const a=e.target.closest('[data-app]');if(a)openApp(a.dataset.app)});
+$('#closeapp').addEventListener('click',closeApp);
+
+/* ===== 카카오톡 화면 ===== */
+const K=CFG.kakao;let kTab='chat',kRoom=null;
+const kesc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const KAV='<svg viewBox="0 0 40 40"><circle cx="20" cy="15.5" r="6.5" fill="#fff" opacity=".9"/><path d="M7 37c1-8 6.5-11.5 13-11.5S32 29 33 37z" fill="#fff" opacity=".9"/></svg>';
+const ks=(d,w=1.9)=>`<svg viewBox="0 0 24 24" fill="none" stroke="#191919" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const BUB='M12 3C6.5 3 2.5 6.5 2.5 11c0 2.6 1.4 4.9 3.6 6.4L5.3 21l4-2.2c.9.2 1.8.3 2.7.3 5.5 0 9.5-3.5 9.5-8S17.5 3 12 3z';
+const KI={search:ks('<circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/>'),
+ newchat:ks('<path d="M20 12.5V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8l4 3v-3"/><path d="M12 8.5v5M9.5 11h5"/>'),
+ gear:ks('<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>'),
+ addf:ks('<circle cx="10" cy="8" r="3.8"/><path d="M3 20c.5-4 3.5-6 7-6s6.5 2 7 6M19 8v6M16 11h6"/>'),
+ music:ks('<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'),
+ back:ks('<path d="M15 5l-7 7 7 7"/>',2.3),menu:ks('<path d="M4 7h16M4 12h16M4 17h16"/>'),
+ bub:`<svg viewBox="0 0 24 24" fill="#4aa8ff"><path d="${BUB}"/><circle cx="8" cy="11" r="1.2" fill="#fff"/><circle cx="12" cy="11" r="1.2" fill="#fff"/><circle cx="16" cy="11" r="1.2" fill="#fff"/></svg>`,
+ call:'<svg viewBox="0 0 24 24" fill="#1fc35a"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>',
+ list:ks('<path d="M4 7h11M4 12h11M4 17h7M18 14v6M15 17h6"/>')};
+const KT={friend:'<path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zm0 2c-4.4 0-8 2.2-8 5.2V21h16v-1.8c0-3-3.6-5.2-8-5.2z"/>',
+ chat:`<path d="${BUB}"/>`,view:'<path fill-rule="evenodd" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm-1.8 5.7 5 3.3-5 3.3z"/>',
+ shop:'<path d="M4.5 8h15l-1 13h-13z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="2"/>',
+ more:'<circle cx="5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="19" cy="12" r="1.9"/>'};
+const kAv=(x,z)=>`<span class="kav" style="width:${z}px;height:${z}px;border-radius:${Math.round(z*.38)}px;background:${x.c||'#9ec5d8'}">${x.e?`<img src="${kesc(x.e)}" alt="">`:KAV}</span>`;
+/* 말풍선 한 개 */
+const kMsg=(c,[w,t,tm,r],f)=>w==='sep'?`<div class="ksep">${kesc(t)}</div>`:w==='me'?`<div class="kmr me${f?' f':''}"><div class="kline"><span class="kmt">${r?'<b>1</b>':''}${kesc(tm||'')}</span><div class="kbb">${kesc(t)}</div></div></div>`:`<div class="kmr${f?' f':''}">${f?kAv(c,40):'<span class="kav sp"></span>'}<div class="kcol">${f?`<div class="kname">${kesc(c.n)}</div>`:''}<div class="kline"><div class="kbb">${kesc(t)}</div><span class="kmt">${kesc(tm||'')}</span></div></div></div>`;
+const kTime=()=>now().toLocaleTimeString('ko-KR',{...TZ,hour:'numeric',minute:'2-digit',hour12:true});
+/* 메시지를 대화에 추가 (지금 그 채팅방을 보고 있으면 화면에도 바로 붙임) */
+function kPush(c,w,t){const tm=kTime();c.msgs.push([w,t,tm,w==='me'?1:0]);c.p=t;c.t=tm;
+  const i=K.chats.indexOf(c),box=$('#kk').querySelector('.kmsgs');
+  if(kRoom===i&&box&&$('#kk').classList.contains('on')){
+    const n=c.msgs.length;box.insertAdjacentHTML('beforeend',kMsg(c,c.msgs[n-1],n<2||c.msgs[n-2][0]!==w));box.scrollTop=box.scrollHeight}
+  else if(w==='them'){c.u=(c.u||0)+1;if(kRoom==null&&$('#kk').classList.contains('on'))kRender()}}
+/* 상대가 답장하면 내가 보낸 말의 '1'(안 읽음)이 사라짐 */
+function kRead(c){let ch=false;c.msgs.forEach(m=>{if(m[0]==='me'&&m[3]){m[3]=0;ch=true}});
+  if(ch&&kRoom===K.chats.indexOf(c))$('#kk').querySelectorAll('.kmt b').forEach(b=>b.remove())}
+/* 답장 고르기: reply.rules 를 위에서부터 보고 처음 맞는 것 → 없으면 reply.else 를 차례로 */
+function kReply(c,text){
+  const R=c.reply||{};let say=null;
+  for(const r of (R.rules||[]))if(new RegExp(r.k,'i').test(text)){say=r.say;break}
+  if(!say){const e=R.else||[];if(!e.length)return;c._i=c._i||0;say=[e[c._i%e.length]];c._i++}
+  let d=1100;
+  say.forEach(line=>{setTimeout(()=>{kRead(c);kPush(c,'them',line)},d);d+=900+Math.min(line.length*60,1200)})}
+function kSend(){const i=$('#kinput');if(!i||kRoom==null)return;const t=i.value.trim();if(!t)return;
+  const c=K.chats[kRoom];i.value='';$('#ksend').classList.remove('on');kPush(c,'me',t);kReply(c,t)}
+function kRender(){
+  const el=$('#kk'),tot=K.chats.reduce((a,c)=>a+(c.u||0),0);
+  el.classList.toggle('kroom',kRoom!=null);
+  if(kRoom!=null){
+    const c=K.chats[kRoom];
+    const msgs=c.msgs.map((m,i)=>kMsg(c,m,i===0||c.msgs[i-1][0]!==m[0])).join('');
+    el.innerHTML=`<div class="krh"><button data-k="back" aria-label="뒤로">${KI.back}</button><h2>${kesc(c.n)}</h2><button aria-label="검색">${KI.search}</button><button aria-label="메뉴">${KI.menu}</button></div><div class="kmsgs">${msgs}</div><div class="kinp"><span class="pl">+</span><input class="fd" id="kinput" autocomplete="off" enterkeyhint="send" aria-label="메시지 입력"><button class="sd" id="ksend" aria-label="전송"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button></div>`;
+    el.querySelector('.kmsgs').scrollTop=1e6;
+    const inp=el.querySelector('#kinput'),sb=el.querySelector('#ksend');
+    inp.addEventListener('input',()=>sb.classList.toggle('on',!!inp.value.trim()));
+    inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();kSend()}});
+    sb.addEventListener('pointerdown',e=>e.preventDefault());      // 전송 눌러도 키보드가 안 닫히게
+    sb.addEventListener('click',kSend);return}
+  const tabs=`<nav class="ktab">${['friend','chat','view','shop','more'].map(k=>`<button class="${k===kTab?'on':''}" ${k==='friend'||k==='chat'?`data-k="tab" data-t="${k}"`:''} aria-label="${k}"><svg viewBox="0 0 24 24">${KT[k]}</svg>${k==='chat'&&tot?`<span class="kbd">${tot}</span>`:''}${k==='shop'||k==='more'?'<span class="kdot"></span>':''}</button>`).join('')}</nav>`;
+  if(kTab==='friend'){
+    el.innerHTML=`<div class="kh"><h1>친구</h1><div class="kic">${KI.search}${KI.addf}${KI.music}${KI.gear}</div></div><div class="kscroll"><div class="kr">${kAv(K.me,58)}<div class="kmid"><div class="kn" style="font-size:17px">${kesc(K.me.n)}</div></div><span class="kst">${kesc(K.me.st||'')}</span></div><div class="kdiv"></div><div class="ksec">친구 ${K.friends.length}</div>${K.friends.map(f=>`<button class="kr" data-k="froom" data-n="${kesc(f.n)}">${kAv(f,46)}<div class="kmid"><div class="kn" style="font-weight:500">${kesc(f.n)}</div></div><span class="kst">${kesc(f.st||'')}</span></button>`).join('')}</div>${tabs}`;return}
+  el.innerHTML=`<div class="kh"><h1>채팅</h1><div class="kic">${KI.search}${KI.newchat}${KI.gear}</div></div><div class="kchips"><span class="kchip on">전체</span><span class="kchip">${KI.bub}${tot?`<i>${tot}</i>`:''}</span><span class="kchip">채널</span><span class="kchip">${KI.call}</span><span class="kchip">${KI.list}</span></div><div class="kscroll"><div class="kban"><div><small>선물하기 ›</small><b>가을 기프트 기획전</b><span>마음을 전하는 선물 모아보기</span></div><em>🎁</em></div>${K.chats.map((c,i)=>`<button class="kr" data-k="room" data-i="${i}">${kAv(c,52)}<div class="kmid"><div class="kn">${kesc(c.n)}</div><div class="kp">${kesc(c.p)}</div></div><div class="kside"><span class="kt">${kesc(c.t)}</span>${c.u?`<span class="kbd">${c.u}</span>`:''}</div></button>`).join('')}</div>${tabs}`;
+}
+$('#kk').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;const a=b.dataset.k;
+  if(a==='tab'){kTab=b.dataset.t;kRender()}
+  else if(a==='room'){kRoom=+b.dataset.i;K.chats[kRoom].u=0;kRender()}
+  else if(a==='froom'){const i=K.chats.findIndex(c=>c.n===b.dataset.n);if(i>=0){kRoom=i;K.chats[i].u=0;kRender()}}
+  else if(a==='back'){kRoom=null;kRender()}});
 document.addEventListener('keydown',e=>{
   const c=phone.classList;
+  if(c.contains('app')){if(e.key==='Escape'){if(kRoom!=null){kRoom=null;kRender()}else closeApp()}return}
   if(!c.contains('pass')&&!c.contains('home')&&(e.key==='Enter'||e.key===' '||/^\d$/.test(e.key))){openPass();if(/^\d$/.test(e.key))press(e.key);return}
   if(!c.contains('pass'))return;
   if(/^\d$/.test(e.key))press(e.key);else if(e.key==='Backspace')setPin(pin.slice(0,-1));else if(e.key==='Escape')closePass()});
