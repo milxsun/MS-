@@ -697,13 +697,13 @@ const CFG={
     // call 은 lines=받았을 때 나오는 대사, ring=안 받으면 몇 초 뒤 부재중이 되는지(기본 25초)
     //   decline = 전화를 끊었을 때(거절 버튼) 오는 연락 → {type:'kakao'|'sms', delay:끊은 뒤 몇 초 후, text:['메시지1','메시지2'], gap:메시지 사이 간격(초)}
     //   miss    = 안 받고 놔뒀을 때(자동 부재중) 오는 연락 (decline 과 같은 모양)
-    {at:15,type:'kakao',from:'재현이 형',text:['형 퇴근했어','도착 5분 전에 전화할게']},
+    {at:15,type:'kakao',from:'재현이 형',text:['형 오늘 칼 도착 5분 전에 전화할게']},
     {at:60,type:'call',from:'재현이 형',lines:['여보세요?','형 5분 뒤 도착','응 준비해서 내려와'],
      decline:{type:'kakao',delay:3,text:['선우야 뭐 해?','형 거의 다 왔어']},
      miss:{type:'kakao',delay:4,text:['똥 싸?','아직 자는 거 아니지?']}}]
   ,ig:{                  // ── 인스타그램 내용 (여기만 고치면 됩니다) ──
     // me = 내 계정 (e 를 안 적으면 카톡 내 프로필 사진을 써요)
-    me:{id:'sunwoo',name:'선우',cat:'래퍼',bio:'소개글을 적어요\ncontact : my@mail.com',loc:'📍 Seoul, Korea',e:'',followers:'1.2만',following:123},
+    me:{id:'sunwoo',name:'선우',cat:'래퍼',bio:'ncontact : MS@mail.com',loc:'📍 Seoul, Korea',e:'',followers:'1.2만',following:123},
     stories:[{n:'mina_0214',e:''},{n:'hyunji.lee',e:''},{n:'cafe.log',e:''},{n:'seoul_daily',e:''}],   // 홈 위쪽 동그라미 (e=사진)
     // users = 눌러서 들어갈 수 있는 다른 사람 프로필 (키 = 인스타 아이디)
     //   follow:0 이면 처음부터 팔로우 안 한 상태 / call = 이 사람을 팔로우 취소하면 delay(초) 뒤에 from(연락처 이름)에게서 전화가 와요
