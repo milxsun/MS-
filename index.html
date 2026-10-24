@@ -697,7 +697,7 @@ const CFG={
     // call 은 lines=받았을 때 나오는 대사, ring=안 받으면 몇 초 뒤 부재중이 되는지(기본 25초)
     //   decline = 전화를 끊었을 때(거절 버튼) 오는 연락 → {type:'kakao'|'sms', delay:끊은 뒤 몇 초 후, text:['메시지1','메시지2'], gap:메시지 사이 간격(초)}
     //   miss    = 안 받고 놔뒀을 때(자동 부재중) 오는 연락 (decline 과 같은 모양)
-    {at:15,type:'kakao',from:'재현이 형',text:['형 오늘 칼 도착 5분 전에 전화할게']},
+    {at:15,type:'kakao',from:'재현이 형',text:['형 오늘 칼퇴야 도착 5분 전에 전화할게']},
     {at:60,type:'call',from:'재현이 형',lines:['여보세요?','형 5분 뒤 도착','응 준비해서 내려와'],
      decline:{type:'kakao',delay:3,text:['선우야 뭐 해?','형 거의 다 왔어']},
      miss:{type:'kakao',delay:4,text:['똥 싸?','아직 자는 거 아니지?']}}]
