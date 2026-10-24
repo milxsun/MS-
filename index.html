@@ -697,8 +697,8 @@ const CFG={
     // call 은 lines=받았을 때 나오는 대사, ring=안 받으면 몇 초 뒤 부재중이 되는지(기본 25초)
     //   decline = 전화를 끊었을 때(거절 버튼) 오는 연락 → {type:'kakao'|'sms', delay:끊은 뒤 몇 초 후, text:['메시지1','메시지2'], gap:메시지 사이 간격(초)}
     //   miss    = 안 받고 놔뒀을 때(자동 부재중) 오는 연락 (decline 과 같은 모양)
-    {at:15,type:'kakao',from:'재현이 형',text:'형 퇴근했어'},
-    {at:30,type:'call',from:'재현이 형',lines:['여보세요?','형 5분 뒤 도착','응 준비해서 내려와'],
+    {at:15,type:'kakao',from:'재현이 형',text:['형 퇴근했어','도착 5분 전에 전화할게']},
+    {at:60,type:'call',from:'재현이 형',lines:['여보세요?','형 5분 뒤 도착','응 준비해서 내려와'],
      decline:{type:'kakao',delay:3,text:['선우야 뭐 해?','형 거의 다 왔어']},
      miss:{type:'kakao',delay:4,text:['똥 싸?','아직 자는 거 아니지?']}}]
   ,ig:{                  // ── 인스타그램 내용 (여기만 고치면 됩니다) ──
@@ -717,23 +717,23 @@ const CFG={
     //   u=올린 사람 아이디, e=사진 파일, c=내용, l=좋아요 수, n=댓글 수, d=날짜, cm=보이는 댓글 [['아이디','내용']]
     //   feed:1 = 홈 화면에 보임 / liked:1 = 처음부터 내가 좋아요를 누른 상태(좋아요 수 l 에 이미 포함)
     posts:[
-      {u:'leejaehyunow',e:'jae_1.jpg',c:'날씨 좋네',l:470,n:13,d:'10월 4일',feed:1,liked:1,cm:[['sunwoo','형 누가 찍어줬어? 잘 찍었네 ㅎㅎ'],['leejaehyunow','있어~ 너구리 닮은 애 ㅋㅋ']]},
+      {u:'leejaehyunow',e:'jae_1.jpg',c:'날씨 좋네',l:9803,n:13,d:'10월 4일',feed:1,liked:1,cm:[['sunwoo','형 누가 찍어줬어? 잘 찍었네 ㅎㅎ'],['leejaehyunow','있어~ 너구리 닮은 애 ㅋㅋ']]},
       {u:'leejaehyunow',e:'250629.9.jpg',c:'',l:5826,n:457,d:'9월 13일',feed:1,cm:[['_0hoony','선우랑 간다는 거였어?'],['sunwoo','아니 형 ;;']]},
       {u:'sunwoo',e:'230903_1.jpg',c:'메롱이다',l:5826,n:457,d:'9월 13일',feed:1,cm:[['leejaehyunow','나도 사랑해~'],['sunwoo','아니형쫌공개적으로그러지마']]},
       {u:'_0hoony',e:'bbang.jpg',c:'❤️',l:3137,n:201,d:'8월 8일',feed:1,cm:[['leejaehyunow','여기 어디냐? 선우 데리고 가게'],['seoul_daily','멋있어요 디엠 해도 되나요?']]},
-      {u:'sunwoo',e:'cakesun.jpg',c:'생일 축하해 주셔서 감사합니다 😊',l:5826,n:457,d:'4월 12일',feed:1,cm:[['leejaehyunow','사랑해'],['_qfeed_','선우 생일 축하해~']]},
+      {u:'sunwoo',e:'cakesun.jpg',c:'생일 축하해 주셔서 감사합니다 😊',l:9130,n:457,d:'4월 12일',feed:1,cm:[['leejaehyunow','사랑해'],['_qfeed_','선우 생일 축하해~']]},
       {u:'leejaehyunow',e:'kkkkk.jpg',c:'',l:263,n:18,d:'3월 2일',cm:[['sunwoo','아 형 이런 거 올리지 말라고여']]},
       {u:'_0hoony',e:'sunwoo00.jpg',c:'귀여운 내 동생 ㅎㅎ',l:304,n:6,d:'2025년 10월 25일',cm:[['sunwoo','형은 진짜 악마다']]},
       {u:'leejaehyunow',e:'240412 SUNWOO.jpg',c:'누가 이런 거 찍어놓으래\n@sunwoo',l:1204,n:38,d:'2025년 7월 20일',cm:[['sunwoo','행운의 부적이라고 하죠']]},
-      {u:'_qfeed_',e:'qpeed.jpg',c:'풋살 모임 모집',l:980,n:21,d:'2025년 4월 13일',cm:[['sunwoo','잘생긴 김선우 상시 대기'],['_qfeed_','까분다 또']]},
+      {u:'sunwoo',e:'qpeed.jpg',c:'풋살 모임 모집',l:980,n:21,d:'2025년 4월 13일',cm:[['sunwoo','잘생긴 김선우 상시 대기'],['_qfeed_','까분다 또']]},
       {u:'sunwoo',e:'ms23.jpg',c:'형 쫌 쩌네요',l:640,n:9,d:'2025년 3월 17일',cm:[['leejaehyunow','ㅋㅋㅋ 귀엽네']]}]
     ,
     // dms = 인스타 DM (메시지 탭). u=상대 아이디(위 users·게시물 아이디와 같으면 같은 사진), t=목록에 보이는 시간,
     //   unread:1 = 안 읽음, msgs=[['them'|'me','내용'],['sep','날짜 글자']], reply = 내가 보낸 말에 답장 (카톡과 같은 방식)
     //   reply.rules=[{k:'단어1|단어2',say:['답장1','답장2']}] / reply.else=['어디에도 안 맞을 때 답장'] / 답장 속도는 kakao 의 readDelay·delay·gap 을 같이 써요
     dms:[
-      {u:'leejaehyunow',t:'3시간',unread:1,msgs:[['sep','8월 8일 오후 9:21'],['them','잘 나왔네 ㅋㅋ'],['me','좋아요 눌러 !!'],['them','이미 눌렀어 ㅋㅋ'],['me','ㅎㅎ'],['sep','오늘 오전 9:40'],['them','주말에 시간 돼?']],
-       reply:{rules:[{k:'안녕|하이',say:['어 안녕~','뭐해?']},{k:'주말|시간|언제',say:['토요일 어때?','오후 2시쯤 괜찮아?']}],else:['ㅋㅋㅋ','그치?','응응']}},
+      {u:'leejaehyunow',t:'3시간',unread:1,msgs:[['sep','8월 8일 오후 9:21'],['them','영훈이 놀러간 곳 갈래?'],['me','어딘데??'],['them','영훈이가 링크 줬어'],['me','난 형이랑 가는 거면 다 좋아']],
+       reply:{else:['응?','사랑해','보고 싶어']}},
       {u:'_0hoony',t:'1일',msgs:[['sep','어제 오후 6:10'],['them','선우야'],['me','왜 형']],
        reply:{else:['그냥 ㅎ','메롱']}},
       {u:'mina_0214',t:'2일',msgs:[['sep','10월 17일 오후 8:02'],['them','게시물 예뻐요']],reply:{else:[]}},
